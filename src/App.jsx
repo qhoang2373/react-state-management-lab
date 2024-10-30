@@ -78,7 +78,7 @@ const App = () => {
     ]
   );
 
-  const handAddFighter = (fighter) => {
+  const handleAddFighter = (fighter) => {
     console.log(fighter)
     
   }
@@ -93,6 +93,7 @@ const App = () => {
         {zombieFighters.map((fighter) =>
         <li key={fighter.name}>
         <img src={fighter.img} alt={fighter.name} />
+        <h2>{fighter.name}</h2>
         <p>Team Strength: {fighter.strength} </p>
         <p>Team Agility: {fighter.agility} </p>
         <p>Price: {fighter.price}</p>
