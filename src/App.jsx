@@ -90,25 +90,44 @@ const App = () => {
   }
 
   return (
-      <>
-      <h1>Zombie Fighters</h1>
-      <p>Team: {team.length}</p>
-      <p>Money: ${money} </p>
-      <h2>Fighters</h2>
-      <ul>
-        {zombieFighters.map((fighter) =>
-        <li key={fighter.name}>
-        <img src={fighter.img} alt={fighter.name} />
-        <h2>{fighter.name}</h2>
-        <p>Team Strength: {fighter.strength} </p>
-        <p>Team Agility: {fighter.agility} </p>
-        <p>Price: {fighter.price}</p>
-        <button onClick={() => handleAddFighter(fighter)}>Add</button>
-        </li>
-      )}
+    <>
+    <h1>Zombie Fighters</h1>
+    <p>Team: {team.length}</p>
+    <p>Money: ${money} </p>
+    <h2>Fighters</h2>
+    {team.length === 0 ? (
+        <p>Pick some team members!</p>
+      ) : (
+        
+        <ul>
+        {team.map((fighter) => (
+          <li key={fighter.name}>
+            <img src={fighter.img} alt={fighter.name} />
+            <h2>{fighter.name}</h2>
+            <p>Strength: {fighter.strength} </p>
+            <p>Agility: {fighter.agility} </p>
+            <p>Price: {fighter.price}</p>
+      
+          </li>
+        ))}
+      </ul>
+    )}
+
+<h2>Available Zombie Fighters</h2>
+<ul>
+{zombieFighters.map((fighter) => (
+      <li key={fighter.name}>
+            <img src={fighter.img} alt={fighter.name} />
+            <h2>{fighter.name}</h2>
+            <p>Strength: {fighter.strength} </p>
+            <p>Agility: {fighter.agility} </p>
+            <p>Price: {fighter.price}</p>
+            <button onClick={() => handleAddFighter(fighter)}>Add</button>
+            </li>
+          ))}
         </ul>
-      </>
+    </>
   );
-}
+};
 
 export default App
