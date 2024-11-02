@@ -1,11 +1,13 @@
-import { useState } from 'react';
+
 import './App.css'
+import { useState } from 'react';
+
 
 const App = () => {
-  const [team, setTeam] = useState([])
-  const [money, setMoney] = useState(100)
+  const [team, setTeam] = useState([]);
+  const [money, setMoney] = useState(100);
   const [zombieFighters, setZombieFighters] = useState([
-      {
+    {
         name: 'Survivor',
         price: 12,
         strength: 6,
@@ -79,8 +81,12 @@ const App = () => {
   );
 
   const handleAddFighter = (fighter) => {
-    console.log(fighter)
-    
+    if (money >= fighter.price) {
+      setTeam([...team, fighter]);
+      setMoney(money - fighter.price);
+    } else {
+    console.error("Not enough money");
+    }
   }
 
   return (
@@ -106,4 +112,3 @@ const App = () => {
 }
 
 export default App
-
