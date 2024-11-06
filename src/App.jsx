@@ -6,6 +6,8 @@ import { useState } from 'react';
 const App = () => {
   const [team, setTeam] = useState([]);
   const [money, setMoney] = useState(100);
+  const [totalStrength, setTotalStrength] = useState(0);
+  const [totalAgility, setTotalAgility] = useState(0);
   const [zombieFighters, setZombieFighters] = useState([
     {
         name: 'Survivor',
@@ -80,20 +82,44 @@ const App = () => {
     ]
   );
 
+  const updatedTeam = [...team, fighter];
+  setTeam (updatedTeam);
+  setMoney ((prevMoney) => prevMoney - fighter.price);
+  combinedStrength(updatedTeam);
+  combinedAgility(updatedTeam);
+}
+
+
+  const combinedStrength = (currentTeam)=> {
+    const total = currentTeam.reduce((acc, member) => acc + member.strength, 0);
+     setTotalStrength(total);
+   };
+
+
+   const combinedAgility = (currentTeam) => {
+    const total = currentTeam.reduce((acc, member) => acc + member.agility, 0);
+    setTotalAgility(total);
+  }
+
+
+
+
   const handleAddFighter = (fighter) => {
     if (money >= fighter.price) {
       setTeam([...team, fighter]);
       setMoney(money - fighter.price);
     } else {
-    console.error("Not enough money");
+    console.log("Not enough money");
     }
-  }
+  };
+
 
   return (
     <>
     <h1>Zombie Fighters</h1>
     <p>Team: {team.length}</p>
     <p>Money: ${money} </p>
+
     <h2>Fighters</h2>
     {team.length === 0 ? (
         <p>Pick some team members!</p>
@@ -107,7 +133,6 @@ const App = () => {
             <p>Strength: {fighter.strength} </p>
             <p>Agility: {fighter.agility} </p>
             <p>Price: {fighter.price}</p>
-      
           </li>
         ))}
       </ul>
@@ -130,4 +155,4 @@ const App = () => {
   );
 };
 
-export default App
+export default App;
