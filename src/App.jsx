@@ -82,6 +82,7 @@ const App = () => {
     ]
   );
 
+
   const updatedTeam = [...team, fighter];
   setTeam (updatedTeam);
   setMoney ((prevMoney) => prevMoney - fighter.price);
@@ -101,9 +102,6 @@ const App = () => {
     setTotalAgility(total);
   }
 
-
-
-
   const handleAddFighter = (fighter) => {
     if (money >= fighter.price) {
       setTeam([...team, fighter]);
@@ -112,7 +110,6 @@ const App = () => {
     console.log("Not enough money");
     }
   };
-
 
   return (
     <>
@@ -133,6 +130,7 @@ const App = () => {
             <p>Strength: {fighter.strength} </p>
             <p>Agility: {fighter.agility} </p>
             <p>Price: {fighter.price}</p>
+            <button onClick= {()=> handleRemoveFighter(eachFighter)}>Remove</button>
           </li>
         ))}
       </ul>
